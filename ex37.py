@@ -63,7 +63,7 @@ def puzzle_room():
             genie_room()
         else:
             dead("The board turns red and flies out hitting you in the face.")
-    if puzzle == 2:
+    elif puzzle == 2:
         puzzle2 = 0/(((3+5)**2)*3)
         print(puzzle2)
         answer = input("> ")
@@ -72,7 +72,7 @@ def puzzle_room():
             genie_room()
         else:
             dead("The board turns red and flies out hitting you in the face.")
-    if puzzle == 3:
+    elif puzzle == 3:
         puzzle3 = ((2*2)**2)**2
         print(puzzle3)
         answer = input("> ")
