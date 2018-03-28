@@ -7,6 +7,12 @@ states = {
     'Michigan': 'MI'
 }
 
+provinces = {
+    'Ontario': 'ON',
+    'Quebec': 'QC',
+    'British Columbia': 'BC'
+}
+
 #create a basic set of states and some cities in them
 cities = {
     'CA': 'San Francisco',
@@ -14,6 +20,11 @@ cities = {
     'FL': 'Jacksonville'
 }
 
+cadcities = {
+    'ON': 'Toronto',
+    'QC': 'Montreal',
+    'BC': 'Vancouver'
+}
 #add more cities
 cities['NY']='New York'
 cities['OR']='Portland'
@@ -48,6 +59,11 @@ print('-'*10)
 for state, abbrev in list(states.items()):
     print(f"{state} state is abbreviated {abbrev}")
     print(f"and has city {cities[abbrev]}")
+
+#CAD prints
+for province, abbrev in list(provinces.items()):
+    print(f"{province} province is abbreviated {abbrev}")
+    print(f"with city {cadcities[abbrev]}")
 
 print('-'*10)
 #safely get abbreviation by state that might not be there
