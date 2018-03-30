@@ -15,11 +15,11 @@ bulls_on_parade = Song(["They rally around the family",
 "With pockets full of shells"])
 
 hot_cross_buns = Song(["One a penny", 
-two a penny", 
-hot cross buns"])
+"two a penny", 
+"hot cross buns"])
 
 happy_bday.sing_me_a_song()
 
 bulls_on_parade.sing_me_a_song()
 
-hot_cross_buns()
+hot_cross_buns.sing_me_a_song()
