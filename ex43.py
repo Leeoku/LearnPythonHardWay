@@ -1,11 +1,12 @@
 from sys import exit
 from random import randint
+from textwrap import dedent
 
 class Scene(object) :
 
     def enter(self) :
         print("You are exiting the game")
-        exit(0)
+        exit(1)
 
 class Engine(object) :
 
@@ -41,29 +42,70 @@ class CentralCorridor(Scene) :
         elif action == "tell a joke":
             print("Who holds the door? HODOR!")
             print("The Gorthon scratches his head, then walks away")
+            return 'laser_armory'
         else:
             print("Try choosing another option")
             CentralCorridor()
 class LaserWeaponArmory(Scene) :
     def enter(self) :
-        pass
+        print("You run into the Laser room to try and find the bomb to blow up the Gorthons. You see a locked keypad. What do you put?")
+        code = f"{randint(1,9)}{randint(1,9)}{randint(1,9)}"
+        print (code)
+        guess = input('>')
+        tries = 0
+        while tries < 3 and guess!=code:
+            print(f"Bzzz, incorrect code. Try again")
+            tries+=1 
+            guess =input('>')
 
+        if guess == code:
+            print(f"The door unlocks and you grab the bomb")
+            return 'bridge'
+        else:
+            return 'death'
 class TheBridge(Scene) :
     def enter(self) :
-        pass
+        print(f"You run into the bridge with bomb in hand and see a giant Gothon in the way")
+        print(f"What do you do? Throw the bomb or run")
+        action = input('>')
+        if action == "throw bomb":
+            print(dedent("""
+            With your only weapon, you hurl the bomb at the Gothon's head. It explodes and sends
+            it flying into a large spike, impaling it.
+            """))
+            return 'escape_pod'
+        elif action =='run':
+            print(f"The Gothon jumps onto you and eats your head!")
+            return 'death'
+        else:
+            print(f"Try another option!")
 
 class EscapePod(Scene) :
 
     def enter(self) :
-        pass
-    
+        print(f"You run into the escape pod room and sees three ships ready to go out. Which do you choose?")
+        working_pod = randint(1,3)
+        pod_guess = input('>')
+        if pod_guess == working_pod:
+            print("You hop into the pod and successfully escape!")
+            return 'finished'
+        else:
+            print("You jump into the pod and fly out, but hear a clunking sound. The engine explodes and you die!")
+            return 'death'
+class Finished(Scene):
+    def enter(self):
+        print('You won! GG')
+        return 'finished'
+
+
 class Map(object) :
     scenes = {
         'death': Death(),
         "central_corridor": CentralCorridor(),
         'laser_armory': LaserWeaponArmory(),
         'bridge': TheBridge(),
-        'escape_pod': EscapePod()
+        'escape_pod': EscapePod(),
+        'finished': Finished()
     }
     def __init__(self, start_scene) :
         self.start_scene = start_scene
